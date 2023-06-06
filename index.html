@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sticky Navbar Example</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: #f1f1f1;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-left: 10px;
+            color: #333;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            /* Add attractive styling for the title */
+            background: linear-gradient(to right, #3acfd5, #3a4ed5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .navbar-icon {
+            display: flex;
+            align-items: center;
+            margin-left: 20px;
+            color: #333; /* Set the color for the icon */
+            cursor: pointer;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            display: none; /* Hide the menu by default */
+            position: absolute;
+            top: 100%; /* Position the menu below the icon */
+            left: 0;
+            background-color: #f1f1f1;
+        }
+
+        .navbar li {
+            text-align: center;
+        }
+
+        .navbar li a {
+            display: block;
+            padding: 14px 16px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        /* Styling for the expanded menu */
+        .navbar ul.expanded {
+            display: block;
+        }
+
+        /* Media query to display the horizontal menu on smaller screens */
+        @media (max-width: 768px) {
+            .navbar-icon {
+                display: flex; /* Show the burglar menu on smaller screens */
+            }
+
+            .navbar .menu {
+                display: none; /* Hide the horizontal menu on smaller screens */
+            }
+
+            .navbar ul.expanded.vertical {
+                display: block; /* Show the expanded vertical menu on smaller screens */
+            }
+        }
+
+        .content {
+            margin-top: 60px;
+            padding: 20px;
+        }
+    </style>
+    <script>
+        // JavaScript to handle the burglar menu click event
+        document.addEventListener("DOMContentLoaded", function() {
+            var burglarMenu = document.querySelector(".navbar-icon");
+            var menu = document.querySelector(".navbar ul");
+
+            burglarMenu.addEventListener("click", function() {
+                menu.classList.toggle("expanded");
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-icon">
+            <!-- Replace "path/to/burglar-icon.svg" with the actual path to your SVG file -->
+            <img src="static/img/burger-menu-svgrepo-com.svg" alt="Burglar Icon" width="24" height="24">
+        </div>
+        <div class="navbar-title">Vedas Realtime Threat Assessment</div>
+        <ul class="menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/abt">About</a></li>
+            <li><a href="/con">Contact</a></li>
+        </ul>
+    </div>
+
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>
